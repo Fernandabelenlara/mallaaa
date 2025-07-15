@@ -1,4 +1,3 @@
-```javascript
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
   const data = [
@@ -125,4 +124,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateCursos();
 });
-```
