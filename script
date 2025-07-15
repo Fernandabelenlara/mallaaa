@@ -2,125 +2,137 @@
 document.addEventListener('DOMContentLoaded', () => {
   const data = [
     { semestre: "Primer semestre", cursos: [
-        { code: "QUI-010", name: "Química y sociedad", prereq: [] },
-        { code: "MAT-021", name: "Matemática I", prereq: [] },
-        { code: "FIS-100", name: "Introducción a la física", prereq: [] },
-        { code: "MIN-100", name: "Introducción a la ingeniería de Minas", prereq: [] },
-        { code: "DEW-100", name: "Educación física I", prereq: [] }
+        { id: "QUI-010", nombre: "Química y sociedad", requisitos: [] },
+        { id: "MAT-021", nombre: "Matemática I", requisitos: [] },
+        { id: "FIS-100", nombre: "Introducción a la física", requisitos: [] },
+        { id: "MIN-100", nombre: "Introducción a la ingeniería de Minas", requisitos: [] },
+        { id: "DEW-100", nombre: "Educación física I", requisitos: [] }
       ]},
     { semestre: "Segundo semestre", cursos: [
-        { code: "IWI-131", name: "Programación", prereq: [] },
-        { code: "MAT-022", name: "Matemática II", prereq: ["MAT-021"] },
-        { code: "FIS-110", name: "Física general I", prereq: ["FIS-100"] },
-        { code: "MIN-101", name: "Trabajo en equipo", prereq: ["MIN-100"] },
-        { code: "DEW-101", name: "Educación física II", prereq: ["DEW-100"] }
+        { id: "IWI-131", nombre: "Programación", requisitos: [] },
+        { id: "MAT-022", nombre: "Matemática II", requisitos: ["MAT-021"] },
+        { id: "FIS-110", nombre: "Física general I", requisitos: ["FIS-100"] },
+        { id: "MIN-101", nombre: "Trabajo en equipo", requisitos: ["MIN-100"] },
+        { id: "DEW-101", nombre: "Educación física II", requisitos: ["DEW-100"] }
       ]},
     { semestre: "Tercer semestre", cursos: [
-        { code: "QUI-021", name: "Química Básica", prereq: ["QUI-010"] },
-        { code: "MAT-023", name: "Matemática III", prereq: ["MAT-022"] },
-        { code: "FIS-130", name: "Física general III", prereq: ["FIS-110"] },
-        { code: "MIN-102", name: "Industria minera", prereq: ["MIN-100"] },
-        { code: "MIN-103", name: "Ciencia ambiental", prereq: ["MIN-100"] },
-        { code: "DEW-102", name: "Educación física III", prereq: ["DEW-101"] }
+        { id: "QUI-021", nombre: "Química Básica", requisitos: ["QUI-010"] },
+        { id: "MAT-023", nombre: "Matemática III", requisitos: ["MAT-022"] },
+        { id: "FIS-130", nombre: "Física general III", requisitos: ["FIS-110"] },
+        { id: "MIN-102", nombre: "Industria minera", requisitos: ["MIN-100"] },
+        { id: "MIN-103", nombre: "Ciencia ambiental", requisitos: ["MIN-100"] },
+        { id: "DEW-102", nombre: "Educación física III", requisitos: ["DEW-101"] }
       ]},
     { semestre: "Cuarto semestre", cursos: [
-        { code: "IWM-185", name: "Gráfica en ingeniería", prereq: ["IWI-131"] },
-        { code: "MAT-024", name: "Matemática IV", prereq: ["MAT-023"] },
-        { code: "FIS-120", name: "Física general II", prereq: ["FIS-110","MAT-022"] },
-        { code: "MIN-130", name: "Geología", prereq: ["MIN-102"] },
-        { code: "MIN-205", name: "Materiales para la industria minera", prereq: ["FIS-110","QUI-010"] }
+        { id: "IWM-185", nombre: "Gráfica en ingeniería", requisitos: ["IWI-131"] },
+        { id: "MAT-024", nombre: "Matemática IV", requisitos: ["MAT-023"] },
+        { id: "FIS-120", nombre: "Física general II", requisitos: ["FIS-110","MAT-022"] },
+        { id: "MIN-130", nombre: "Geología", requisitos: ["MIN-102"] },
+        { id: "MIN-205", nombre: "Materiales para la industria minera", requisitos: ["FIS-110","QUI-010"] }
       ]},
     { semestre: "Quinto semestre", cursos: [
-        { code: "MIN-233", name: "Geomática", prereq: ["MIN-102"] },
-        { code: "FIS-140", name: "Física general IV", prereq: ["FIS-130","FIS-120"] },
-        { code: "MIN-232", name: "Geología estructural y geotecnia", prereq: ["MIN-130"] },
-        { code: "MIN-250", name: "Procesamientos de minerales I", prereq: ["MIN-130","MIN-102"] },
-        { code: "MIN-240", name: "Resistencia de materiales", prereq: ["MIN-205","MAT-023","FIS-110"] },
-        { code: "HIW-310", name: "Inglés para la ingeniería I", prereq: [] }
+        { id: "MIN-233", nombre: "Geomática", requisitos: ["MIN-102"] },
+        { id: "FIS-140", nombre: "Física general IV", requisitos: ["FIS-130","FIS-120"] },
+        { id: "MIN-232", nombre: "Geología estructural y geotecnia", requisitos: ["MIN-130"] },
+        { id: "MIN-250", nombre: "Procesamiento de minerales I", requisitos: ["MIN-130","MIN-102"] },
+        { id: "MIN-240", nombre: "Resistencia de materiales", requisitos: ["MIN-205","MAT-023","FIS-110"] },
+        { id: "HIW-310", nombre: "Inglés para la ingeniería I", requisitos: [] }
       ]},
     { semestre: "Sexto semestre", cursos: [
-        { code: "MIN-265", name: "Fluidodinámica en minería", prereq: ["MAT-024","FIS-130"] },
-        { code: "MIN-235", name: "Geoestadística y análisis espacial", prereq: ["MIN-233","MIN-101"] },
-        { code: "MIN-242", name: "Mecánica de rocas", prereq: ["MIN-232","MIN-240","MAT-024"] },
-        { code: "MIN-260", name: "Procesamientos de minerales II", prereq: ["MIN-130","MIN-102","QUI-021","MIN-103"] },
-        { code: "MIN-244", name: "Perforación y tronadura", prereq: ["MIN-232","QUI-021","FIS-130"] },
-        { code: "HIW-311", name: "Inglés para la ingeniería II", prereq: ["HIW-310"] }
+        { id: "MIN-265", nombre: "Fluidodinámica en minería", requisitos: ["MAT-024","FIS-130"] },
+        { id: "MIN-235", nombre: "Geoestadística y análisis espacial", requisitos: ["MIN-233","MIN-101"] },
+        { id: "MIN-242", nombre: "Mecánica de rocas", requisitos: ["MIN-232","MIN-240","MAT-024"] },
+        { id: "MIN-260", nombre: "Procesamiento de minerales II", requisitos: ["MIN-130","MIN-102","QUI-021","MIN-103"] },
+        { id: "MIN-244", nombre: "Perforación y tronadura", requisitos: ["MIN-232","QUI-021","FIS-130"] },
+        { id: "HIW-311", nombre: "Inglés para la ingeniería II", requisitos: ["HIW-310"] }
       ]},
     { semestre: "Séptimo semestre", cursos: [
-        { code: "IWN-170", name: "Economía I-A", prereq: ["MAT-023"] },
-        { code: "MIN-324", name: "Ingeniería de medios granulares", prereq: ["MIN-240"] },
-        { code: "MIN-314", name: "Ingeniería de rocas", prereq: ["MIN-244","MIN-242"] },
-        { code: "MIN-334", name: "Minería de superficie", prereq: ["MIN-242","MIN-244","MIN-233"] },
-        { code: "MIN-270", name: "Procesamientos de minerales III", prereq: ["MIN-250","MIN-260"] }
+        { id: "IWN-170", nombre: "Economía I-A", requisitos: ["MAT-023"] },
+        { id: "MIN-324", nombre: "Ingeniería de medios granulares", requisitos: ["MIN-240"] },
+        { id: "MIN-314", nombre: "Ingeniería de rocas", requisitos: ["MIN-244","MIN-242"] },
+        { id: "MIN-334", nombre: "Minería de superficie", requisitos: ["MIN-242","MIN-244","MIN-233"] },
+        { id: "MIN-270", nombre: "Procesamiento de minerales III", requisitos: ["MIN-250","MIN-260"] }
       ]},
     { semestre: "Octavo semestre", cursos: [
-        { code: "IWN-261", name: "Administración general", prereq: [] },
-        { code: "MIN-301", name: "Electivo I", prereq: [] },
-        { code: "MIN-332", name: "Geología económica", prereq: ["MIN-250","MIN-260"] },
-        { code: "MIN-344", name: "Minería subterránea", prereq: ["MIN-233","MIN-324","MIN-314"] },
-        { code: "MIN-280", name: "Procesamientos de minerales IV", prereq: ["MIN-270"] }
+        { id: "IWN-261", nombre: "Administración general", requisitos: [] },
+        { id: "MIN-301", nombre: "Electivo I", requisitos: [] },
+        { id: "MIN-332", nombre: "Geología económica", requisitos: ["MIN-250","MIN-260"] },
+        { id: "MIN-344", nombre: "Minería subterránea", requisitos: ["MIN-233","MIN-324","MIN-314"] },
+        { id: "MIN-280", nombre: "Procesamiento de minerales IV", requisitos: ["MIN-270"] }
       ]},
     { semestre: "Noveno semestre", cursos: [
-        { code: "IWN-270", name: "Información y control financiero", prereq: ["IWN-170"] },
-        { code: "MIN-302", name: "Electivo II", prereq: [] },
-        { code: "MIN-354", name: "Automatización y robótica", prereq: ["MIN-270","MIN-334"] },
-        { code: "MIN-364", name: "Evaluación de yacimientos y planificación minera", prereq: ["MIN-235","MIN-344","MIN-334","MIN-270"] },
-        { code: "MIN-220", name: "Simulación y modelación", prereq: ["MIN-270","IWI-131","MIN-334"] },
-        { code: "HRW-310", name: "Humanístico I", prereq: [] }
+        { id: "IWN-270", nombre: "Información y control financiero", requisitos: ["IWN-170"] },
+        { id: "MIN-302", nombre: "Electivo II", requisitos: [] },
+        { id: "MIN-354", nombre: "Automatización y robótica", requisitos: ["MIN-270","MIN-334"] },
+        { id: "MIN-364", nombre: "Evaluación de yacimientos y planificación minera", requisitos: ["MIN-235","MIN-344","MIN-334","MIN-270"] },
+        { id: "MIN-220", nombre: "Simulación y modelación", requisitos: ["MIN-270","IWI-131","MIN-334"] },
+        { id: "HRW-310", nombre: "Humanístico I", requisitos: [] }
       ]},
     { semestre: "Décimo semestre", cursos: [
-        { code: "MIN-384", name: "Legislación minera y laboral", prereq: ["IWN-270","IWN-261","MIN-233"] },
-        { code: "MIN-374", name: "Negocio minero sustentable", prereq: ["MIN-280","MIN-332"] },
-        { code: "MIN-370", name: "Seguridad industrial y ventilación", prereq: ["MIN-314","MIN-265"] },
-        { code: "MIN-394", name: "Taller de gestión y proyectos", prereq: ["MIN-334","MIN-270"] },
-        { code: "MIN-397", name: "Trabajo de titulación I", prereq: ["MIN-332","MIN-344","MIN-280"] },
-        { code: "HRW-311", name: "Humanístico II", prereq: [] }
+        { id: "MIN-384", nombre: "Legislación minera y laboral", requisitos: ["IWN-270","IWN-261","MIN-233"] },
+        { id: "MIN-374", nombre: "Negocio minero sustentable", requisitos: ["MIN-280","MIN-332"] },
+        { id: "MIN-370", nombre: "Seguridad industrial y ventilación", requisitos: ["MIN-314","MIN-265"] },
+        { id: "MIN-394", nombre: "Taller de gestión y proyectos", requisitos: ["MIN-334","MIN-270"] },
+        { id: "MIN-397", nombre: "Trabajo de titulación I", requisitos: ["MIN-332","MIN-344","MIN-280"] },
+        { id: "HRW-311", nombre: "Humanístico II", requisitos: [] }
       ]},
     { semestre: "Onceavo semestre", cursos: [
-        { code: "MIN-303", name: "Electivo III", prereq: [] },
-        { code: "MIN-398", name: "Trabajo de titulación II", prereq: ["MIN-397"] }
+        { id: "MIN-303", nombre: "Electivo III", requisitos: [] },
+        { id: "MIN-398", nombre: "Trabajo de titulación II", requisitos: ["MIN-397"] }
       ]}
   ];
 
-  const mallaContainer = document.getElementById('malla');
+  const malla = document.getElementById("malla");
   const cursoElements = {};
+  const estadoRamos = {};
 
-  data.forEach(block => {
-    const semDiv = document.createElement('div');
-    semDiv.classList.add('semestre');
-    semDiv.innerHTML = `<h2>${block.semestre}</h2>`;
+  data.forEach(({ semestre, cursos }) => {
+    const semDiv = document.createElement("div");
+    semDiv.classList.add("semestre");
+    const title = document.createElement("h2");
+    title.textContent = semestre;
+    semDiv.appendChild(title);
 
-    block.cursos.forEach(curso => {
-      const curDiv = document.createElement('div');
-      curDiv.classList.add('curso');
-      curDiv.textContent = `${curso.code} - ${curso.name}`;
-      curDiv.dataset.code = curso.code;
-      curDiv.dataset.prereq = JSON.stringify(curso.prereq);
-      semDiv.appendChild(curDiv);
-      cursoElements[curso.code] = curDiv;
+    cursos.forEach(ramo => {
+      const div = document.createElement("div");
+      div.classList.add("curso");
+      div.textContent = `${ramo.nombre} (${ramo.id})`;
+      div.dataset.id = ramo.id;
+      div.dataset.requisitos = JSON.stringify(ramo.requisitos);
 
-      curDiv.addEventListener('click', () => {
-        if (!curDiv.classList.contains('desbloqueado') && !curDiv.classList.contains('aprobado')) return;
-        curDiv.classList.toggle('aprobado');
-        updateCursos();
+      cursoElements[ramo.id] = div;
+      if (ramo.requisitos.length === 0) div.classList.add("desbloqueado");
+
+      div.addEventListener("click", () => {
+        if (!div.classList.contains("desbloqueado")) return;
+        const id = ramo.id;
+        if (div.classList.contains("aprobado")) {
+          delete estadoRamos[id];
+          div.classList.remove("aprobado");
+        } else {
+          estadoRamos[id] = true;
+          div.classList.add("aprobado");
+        }
+        actualizarEstado();
       });
+
+      semDiv.appendChild(div);
     });
 
-    mallaContainer.appendChild(semDiv);
+    malla.appendChild(semDiv);
   });
 
-  function updateCursos() {
-    Object.values(cursoElements).forEach(el => {
-      const prereqs = JSON.parse(el.dataset.prereq);
-      const allApproved = prereqs.every(code => cursoElements[code].classList.contains('aprobado'));
-      if (allApproved) {
-        el.classList.add('desbloqueado');
+  function actualizarEstado() {
+    Object.values(cursoElements).forEach(div => {
+      const id = div.dataset.id;
+      const requisitos = JSON.parse(div.dataset.requisitos);
+      const desbloqueado = requisitos.every(req => estadoRamos[req]);
+      if (desbloqueado) {
+        div.classList.add("desbloqueado");
       } else {
-        el.classList.remove('desbloqueado');
-        el.classList.remove('aprobado');
+        div.classList.remove("desbloqueado", "aprobado");
+        delete estadoRamos[id];
       }
     });
   }
-
-  updateCursos();
 });
