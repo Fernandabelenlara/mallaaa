@@ -1,0 +1,21 @@
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malla Interactiva</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <h1>Malla Curricular</h1>
+  </header>
+  <main>
+    <div id="malla" class="malla"></div>
+  </main>
+  <script src="script.js" defer></script>
+</body>
+</html>
+```
