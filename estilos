@@ -27,7 +27,7 @@ h1 {
 
 .semestre h2 {
   text-align: center;
-  margin-top: 0;
+  margin: 0 0 10px;
   color: #c2185b;
 }
 
